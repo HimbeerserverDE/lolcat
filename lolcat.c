@@ -41,6 +41,7 @@ static char helpstr[] = "\n"
                         "             --no-force-locale, -l: Use encoding from system locale instead of\n"
                         "                                    assuming UTF-8\n"
                         "                      --random, -r: Random colors\n"
+						"              --no-time-offset, -t: Don't randomize colors by time\n"
                         "        --color_offset <d>, -o <d>: Start with a different color\n"
                         "                       --24bit, -b: Output in 24-bit \"true\" RGB mode (slower and\n"
                         "                                    not supported by all terminals)\n"
@@ -134,6 +135,8 @@ int main(int argc, char** argv)
             force_locale = 0;
         } else if (!strcmp(argv[i], "-r") || !strcmp(argv[i], "--random")) {
             random = 1;
+		} else if (!strcmp(argv[i], "--no-time-offset") || !strcmp(argv[i], "-t")) {
+			offx = 1;
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--color_offset")) {
             if ((++i) < argc) {
                 start_color = strtod(argv[i], &endptr);
