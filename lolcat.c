@@ -42,6 +42,7 @@ static char helpstr[] = "\n"
                         "                                    assuming UTF-8\n"
                         "                      --random, -r: Random colors\n"
                         "        --color_offset <d>, -o <d>: Start with a different color\n"
+						"         --time_offset <d>, -t <d>: Start at another time\n"
                         "                       --24bit, -b: Output in 24-bit \"true\" RGB mode (slower and\n"
                         "                                    not supported by all terminals)\n"
                         "                         --version: Print version and exit\n"
@@ -142,6 +143,14 @@ int main(int argc, char** argv)
             } else {
                 usage();
             }
+		} else if (!strcmp(argv[i], "-t") || !strcmp(argv[i], "--time_offset")) {
+			if ((++i) < argc) {
+				offx = strtod(argv[i], &endptr);
+				if (*endptr)
+					usage();
+			} else {
+				usage();
+			}
         } else if (!strcmp(argv[i], "-b") || !strcmp(argv[i], "--24bit")) {
             rgb = 1;
         } else if (!strcmp(argv[i], "--version")) {
